@@ -137,21 +137,20 @@ button:hover{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// 🔴 PUT YOUR FIREBASE CONFIG HERE
+// 🔴 YOUR FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyBdCWsblLABbGDfpE1DxP1Fbkw7Qr-E0B4",
   authDomain: "test-c1740.firebaseapp.com",
-  databaseURL: "https://test-c1740-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "test-c1740",
   storageBucket: "test-c1740.firebasestorage.app",
   messagingSenderId: "106270091671",
-  appId: "1:106270091671:web:bf61e9a3597aa9f9717cd2",
-  
+  appId: "1:106270091671:web:bf61e9a3597aa9f9717cd2"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// FORM SUBMIT → SAVE TO FIREBASE
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -167,9 +166,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
         alert("Saved to Firebase!");
         document.getElementById("loginForm").reset();
-    } catch (err) {
-        alert("Error saving data");
-        console.error(err);
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Failed to save data");
     }
 });
 </script>
