@@ -168,13 +168,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
             time: new Date().toISOString()
         });
 
-        alert("Saved to Firebase!");
-
         document.getElementById("loginForm").reset();
 
     } catch (error) {
         console.error(error);
-        alert("Failed to save data");
     }
 });
 </script>
