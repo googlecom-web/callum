@@ -1,15 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.login-container{
+    width:380px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#333;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:30px;
+    font-size:14px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    color:#444;
+    font-weight:bold;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.input-group input:focus{
+    outline:none;
+    border-color:#667eea;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#667eea;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#5563d8;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#666;
+    font-size:14px;
+}
+
+.footer a{
+    color:#667eea;
+    text-decoration:none;
+}
+</style>
 </head>
+
 <body>
-    <h1>Login</h1>
+
+<div class="login-container">
+
+    <div class="logo">🔒</div>
+
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Sign in to continue</p>
 
     <form>
-        <input type="email" placeholder="Email"><br><br>
-        <input type="password" placeholder="Password"><br><br>
-        <button type="submit">Login</button>
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password" required>
+        </div>
+
+        <button class="login-btn" type="submit">
+            Sign In
+        </button>
     </form>
+
+    <div class="footer">
+        Don't have an account?
+        <a href="#">Create one</a>
+    </div>
+
+</div>
+
 </body>
 </html>
